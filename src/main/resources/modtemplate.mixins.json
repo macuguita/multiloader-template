@@ -1,0 +1,15 @@
+{
+  "package": "com.macuguita.modtemplate.mixin",
+  "required": true,
+  "compatibilityLevel": "JAVA_25",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "mixins": [
+    "ExampleMixin"
+  ],
+  "client": []
+}

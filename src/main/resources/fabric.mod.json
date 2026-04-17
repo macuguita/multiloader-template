@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "modtemplate",
+  "version": "${version}",
+  "name": "Mod Template",
+  "description": "A Mod Description",
+  "authors": [
+    "A Mod Author"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "MIT",
+  "icon": "assets/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "yumi:init": [
+      "com.macuguita.modtemplate.common.ModTemplate"
+    ],
+    "yumi:client_init": [
+      "com.macuguita.modtemplate.client.ModTemplateClient"
+    ],
+    "fabric-datagen": [
+      "com.macuguita.modtemplate.datagen.ModTemplateDataGenerator"
+    ]
+  },
+  "mixins": [
+    "modtemplate.mixins.json"
+  ],
+  "accessWidener": "modtemplate.classtweaker",
+  "depends": {
+    "fabricloader": ">=0.19.0",
+    "minecraft": "${minecraft_fabric_version_range}",
+    "fabric-api": "*",
+    "yumi_mc_core": ">=${yumi_version}"
+  }
+}

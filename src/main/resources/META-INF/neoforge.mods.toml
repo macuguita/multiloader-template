@@ -1,0 +1,42 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+license = "MIT"
+
+[[mods]]
+modId = "modtemplate"
+displayName = "Mod Template"
+version = "${version}"
+displayURL = ""
+logoFile = "assets/icon.png"
+logoBlur = false
+authors = "A Mod Author"
+description = '''A Mod Description'''
+
+[[accessTransformers]]
+file = "METS-INF/accesstransformer.cfg"
+
+[[mixins]]
+config = "modtemplate.mixins.json"
+
+[[dependencies.modtemplate]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft_neoforge_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.modtemplate]]
+modId = "yumi_mc_core"
+type = "required"
+versionRange = "[${yumi_version},)"
+ordering = "NONE"
+side = "CLIENT"
+
+[modproperties.modtemplate]
+catalogueImageIcon = "assets/icon.png"
+
+[[modproperties.modtemplate."yumi:entrypoints"."yumi:init"]]
+value = "com.macuguita.modtemplate.common.ModTemplate"
+
+[[modproperties.modtemplate."yumi:entrypoints"."yumi:client_init"]]
+value = "com.macuguita.modtemplate.client.ModTemplateClient"
