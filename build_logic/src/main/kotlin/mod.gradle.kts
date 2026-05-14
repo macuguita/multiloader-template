@@ -1,7 +1,13 @@
 plugins {
+	`java-library`
+	`maven-publish`
 	idea
 	id("net.fabricmc.fabric-loom")
 }
+
+// Seriously, you should not worry about it, definitely not a hack.
+// https://github.com/gradle/gradle/issues/15383#issuecomment-779893192
+val libs = the<org.gradle.accessors.dm.LibrariesForLibs>()
 
 tasks.withType<Wrapper> {
 	gradleVersion = "9.4.0"
@@ -62,19 +68,19 @@ val neoforge: SourceSet by sourceSets.creating {
 
 dependencies {
 	// To change the versions see the gradle.properties file
-	minecraft("com.mojang:minecraft:${prop("deps.minecraft_version")}")
-	api("dev.yumi.mc.core:yumi-mc-foundation:${prop("deps.yumi_version")}")
-	include("dev.yumi.mc.core:yumi-mc-foundation:${prop("deps.yumi_version")}")
-	implementation("dev.yumi.mc.core:yumi-mc-foundation:${prop("deps.yumi_version")}")
+	minecraft(libs.minecraft)
+	api(libs.yumi.foundation)
+	include(libs.yumi.foundation)
+	implementation(libs.yumi.foundation)
 
-	compileOnly("net.fabricmc:fabric-loader:${prop("deps.fabric_loader_version")}")
-	localRuntime("net.fabricmc:fabric-loader:${prop("deps.fabric_loader_version")}")
+	compileOnly(libs.fabric.loader)
+	localRuntime(libs.fabric.loader)
 
-	"fabricCompileOnly"("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric_api_version")}")
-	localRuntime("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric_api_version")}")
+	"fabricCompileOnly"(libs.fabric.api)
+	localRuntime(libs.fabric.api)
 
-	"neoforgeCompileOnly"("net.neoforged:neoforge:${prop("deps.neoforge_version")}:universal")
-	"neoforgeCompileOnly"("net.neoforged.fancymodloader:loader:${prop("deps.neoforge_loader_version")}")
+	"neoforgeCompileOnly"(libs.neoforge)
+	"neoforgeCompileOnly"(libs.neoforge.loader)
 
 	"neoforgeImplementation"(sourceSets.main.get().output)
 	"fabricImplementation"(sourceSets.main.get().output)

@@ -1,8 +1,8 @@
 plugins {
 	`maven-publish`
 	id("mod")
-	id("co.uzzu.dotenv.gradle")
-	id("me.modmuss50.mod-publish-plugin")
+	alias(libs.plugins.dotenv)
+	alias(libs.plugins.mod.publish)
 }
 
 fun prop(name: String): String = providers.gradleProperty(name).get()
@@ -18,14 +18,14 @@ fabricApi {
 }
 
 dependencies {
-	implementation("folk.sisby:kaleido-config:${prop("deps.kaleido_version")}")
-	include("folk.sisby:kaleido-config:${prop("deps.kaleido_version")}")
+	implementation(libs.kaleido.config)
+	include(libs.kaleido.config)
 }
 
 tasks.processResources {
 	inputs.properties(
 		"version" to version,
-		"yumi_version" to prop("deps.yumi_version"),
+		"yumi_version" to libs.versions.yumi.get(),
 		"minecraft_fabric_version_range" to prop("deps.minecraft_fabric_version_range"),
 		"minecraft_neoforge_version_range" to prop("deps.minecraft_neoforge_version_range")
 	)
@@ -33,7 +33,7 @@ tasks.processResources {
 	filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/jarjar/metadata.json")) {
 		expand(
 			"version" to version,
-			"yumi_version" to prop("deps.yumi_version"),
+			"yumi_version" to libs.versions.yumi.get(),
 			"minecraft_fabric_version_range" to prop("deps.minecraft_fabric_version_range"),
 			"minecraft_neoforge_version_range" to prop("deps.minecraft_neoforge_version_range")
 		)
@@ -45,7 +45,7 @@ publishing {
 		create<MavenPublication>("mavenJava") {
 			groupId = prop("props.maven_group")
 			artifactId = prop("props.mod_id")
-			version = prop("props.mod_version") + "+${property("deps.minecraft_version")}"
+			version = libs.versions.mod.get() + "+${libs.versions.minecraft.get()}"
 			from(components["java"])
 		}
 	}
