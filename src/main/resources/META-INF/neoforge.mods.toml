@@ -13,7 +13,7 @@ authors = "A Mod Author"
 description = '''A Mod Description'''
 
 [[accessTransformers]]
-file = "METS-INF/accesstransformer.cfg"
+file = "META-INF/accesstransformer.cfg"
 
 [[mixins]]
 config = "modtemplate.mixins.json"

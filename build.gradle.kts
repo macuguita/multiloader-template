@@ -26,6 +26,7 @@ tasks.processResources {
 	inputs.properties(
 		"version" to version,
 		"yumi_version" to libs.versions.yumi.get(),
+		"kaleido_version" to libs.versions.kaleido.get(),
 		"minecraft_fabric_version_range" to prop("deps.minecraft_fabric_version_range"),
 		"minecraft_neoforge_version_range" to prop("deps.minecraft_neoforge_version_range")
 	)
@@ -34,6 +35,7 @@ tasks.processResources {
 		expand(
 			"version" to version,
 			"yumi_version" to libs.versions.yumi.get(),
+			"kaleido_version" to libs.versions.kaleido.get(),
 			"minecraft_fabric_version_range" to prop("deps.minecraft_fabric_version_range"),
 			"minecraft_neoforge_version_range" to prop("deps.minecraft_neoforge_version_range")
 		)
