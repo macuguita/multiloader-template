@@ -4,9 +4,9 @@ import net.minecraft.util.Util;
 
 public interface ClientAbstraction {
 
-	CommonAbstraction INSTANCE = Util.make(() -> {
+	ClientAbstraction INSTANCE = Util.make(() -> {
 		try {
-			return (CommonAbstraction) Class.forName(
+			return (ClientAbstraction) Class.forName(
 				"com.macuguita.modtemplate.impl.platform." +
 					(CommonAbstraction.IS_FABRIC ? "fabric.FabricClientAbstraction" : "neoforge.NeoClientAbstraction")).getField("INSTANCE").get(null);
 		} catch (Throwable e) {
@@ -14,7 +14,7 @@ public interface ClientAbstraction {
 		}
 	});
 
-	static CommonAbstraction get() {
+	static ClientAbstraction get() {
 		return INSTANCE;
 	}
 }
